@@ -1,0 +1,170 @@
+---
+import Swiper from "../components/Swiper.astro"
+import Button from "../components/Button.astro"
+import Card from "../components/Card.astro"
+
+import Scissors from "../assets/icons/scissors.svg"
+import Razor from "../assets/icons/razor.svg"
+import Beard from "../assets/icons/beard.svg"
+import Blade from "../assets/icons/blade.svg"
+
+const services = [
+    {
+        title: "Corte de cabello básico",
+        description: "Incluye:\nCorte + cerquillo",
+        price: "$16.000",
+        svg: [Scissors]
+    },
+    {
+        title: "Corte de cabello especial",
+        description: "Incluye:\nCorte + cerquillo + Lavado + Peinado",
+        price: "$18.000",
+        svg: [Razor]
+    },
+    {
+        title: "Corte de cabello básico y Barba",
+        description: "Incluye:\nCorte + cerquillo + Barba",
+        price: "$24.000",
+        svg: [Scissors, Beard]
+    },
+    {
+        title: "Corte de cabello básico y cejas",
+        description: "Incluye:\nCorte + cerquillo + cejas",
+        price: "$21.000",
+        svg: [Scissors, Blade]
+    },
+    {
+        title: "Barba",
+        description: "Incluye:\nAfeitado + cuchilla",
+        price: "$18.000",
+        svg: [Beard, Razor]
+    },
+    {
+        title: "Cerquillo",
+        description: "Incluye:\nCorte + cerquillo + cejas",
+        price: "$24.000",
+        svg: [Blade, Razor]
+    },
+    {
+        title: "Corte de niño 1 - 2 años",
+        description: "Incluye:\nCorte + cerquillo +lavado",
+        price: "$20.000",
+        svg: [Scissors]
+    },
+    {
+        title: "Corte de niño 3 - 5 años",
+        description: "Incluye:\nCorte + cerquillo + Lavado",
+        price: "$18.000",
+        svg: [Razor]
+    },
+];
+
+---
+<section id="services">
+    <div class="services_content"> 
+        <div class="services_top"> 
+            <h2 class="color_orange">Servicios</h2>
+            <p>Ofrecemos una experiencia de cuidado personal excepcional</p>
+        </div>
+        <div class="services_bottom"> 
+            <div class="swiper_container">
+                <Swiper 
+                    loop={false} 
+                    navigation={true} 
+                    pagination={false} 
+                    breakpoints={{375: { slidesPerView: 1, spaceBetween: 1 }, 
+                                768: { slidesPerView: 2, spaceBetween: 10 }, 
+                                1024: { slidesPerView: 3, spaceBetween: 36 }, 
+                                1440: { slidesPerView: 3, spaceBetween: 36 }}}
+                    autoplay={{"delay": 3000}}>
+                    {services.map((service) => (
+                        <div class="swiper-slide">
+                            <Card title={service.title} description={service.description} price={service.price}>
+                                {service.svg.map((Icon) => (
+                                    <Icon/>
+                                ))}
+                            </Card> 
+                        </div>
+                    ))}   
+                </Swiper>
+                <script is:inline>
+                    customElements.whenDefined('swiper-container').then(() => {
+                      const container = document.querySelector('.services_bottom');
+                      if (!container) return;
+                  
+                      const swiper = container.querySelector('swiper-container');
+                      if (!swiper) return;
+                  
+                      function waitForShadowAndReplaceSVG() {
+                        if (!swiper.shadowRoot) {
+                          requestAnimationFrame(waitForShadowAndReplaceSVG);
+                          return;
+                        }
+                  
+                        const prevBtn = swiper.shadowRoot.querySelector('.swiper-button-prev');
+                        const nextBtn = swiper.shadowRoot.querySelector('.swiper-button-next');
+                  
+                        if (!prevBtn || !nextBtn) {
+                          requestAnimationFrame(waitForShadowAndReplaceSVG);
+                          return;
+                        }
+                  
+                        const prevSVG = `
+                            <svg width="22" height="22" part="svg_icon" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12.5757 19.895L11.4917 20.979C11.0327 21.438 10.2905 21.438 9.83643 20.979L0.344238 11.4917C-0.114746 11.0327 -0.114746 10.2905 0.344238 9.83643L9.83643 0.344238C10.2954 -0.114746 11.0376 -0.114746 11.4917 0.344238L12.5757 1.42822C13.0395 1.89209 13.0298 2.64893 12.5562 3.10303L6.67236 8.7085H20.7056C21.355 8.7085 21.8774 9.23096 21.8774 9.88037V11.4429C21.8774 12.0923 21.355 12.6147 20.7056 12.6147H6.67236L12.5562 18.2202C13.0347 18.6743 13.0444 19.4312 12.5757 19.895Z" fill="#FFFCF2"/>
+                            </svg>
+                        `;
+                  
+                        const nextSVG = `
+                            <svg width="22" height="22" part="svg_icon" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.36328 1.7666L10.4473 0.682617C10.9062 0.223633 11.6484 0.223633 12.1025 0.682617L21.5947 10.1699C22.0537 10.6289 22.0537 11.3711 21.5947 11.8252L12.1025 21.3174C11.6436 21.7764 10.9014 21.7764 10.4473 21.3174L9.36328 20.2334C8.89941 19.7695 8.90918 19.0127 9.38281 18.5586L15.2666 12.9531H1.2334C0.583984 12.9531 0.0615234 12.4307 0.0615234 11.7813V10.2188C0.0615234 9.56934 0.583984 9.04688 1.2334 9.04688H15.2666L9.38281 3.44141C8.9043 2.9873 8.89453 2.23047 9.36328 1.7666Z" fill="white"/>
+                            </svg>
+                        `;
+                  
+                        prevBtn.innerHTML = prevSVG;
+                        nextBtn.innerHTML = nextSVG;
+                      }
+                  
+                      waitForShadowAndReplaceSVG();
+                    });
+                  </script>                            
+            </div>
+        </div>
+        <div class="services_button-contact">
+            <Button className="btn-primary message_entry-animation" href="https://maps.app.goo.gl/kW6xiXNJ8AyGzS98A" target={true}>Contactanos</Button>
+        </div>
+
+
+
+    </div>
+</section>
+
+<style>
+    @media screen and (min-width:0px){
+
+        #services{width: 100%; padding: 6.6rem 0rem 9.2rem; background: var(--blanco-hueso);}
+        #services .services_content{width: min(85%, 122.3rem); margin: 0rem auto;}
+        #services .services_content .services_top{text-align: center;}
+        #services .services_content .services_top h2{font-family: var(--fuente-principal); font-size: 3.2rem; font-weight: 900; line-height: normal; text-transform: uppercase;}
+        #services .services_content .services_top p{padding-top: 1.2rem; font-family: var(--fuente-principal); font-size: 1.6rem; font-weight: 600; line-height: normal; color: var(--negro);}
+        #services .services_content .services_bottom{display: flex; padding-top: 5rem;}
+        #services .services_content .services_bottom .swiper-slide{display: flex; min-height: 33.5rem;}
+        #services .services_content .services_bottom .swiper_container{width: 100%;}
+        #services .services_content .services_bottom .swiper_container img{width: 100%; height: 48.8rem; object-fit: cover; border-radius: 3.5rem;}
+        #services .services_content .services_button-contact{padding-top: 5rem; display: flex; justify-content: center;}
+
+    }
+
+    @media screen and (min-width:768px){
+        #services .services_content{width: min(86%, 122.3rem);}
+        #services .services_content .services_top h2{font-size: 4.8rem;}
+        #services .services_content .services_top p{font-size: 2rem;}
+        #services .services_content .services_bottom{padding-top: 8.9rem;}
+        #services .services_content .services_button-contact{padding-top: 9.1rem;}
+
+    }
+
+    @media screen and (min-width:1025px){
+        #services .services_content{width: min(95%, 122.3rem);}
+    }
+</style>

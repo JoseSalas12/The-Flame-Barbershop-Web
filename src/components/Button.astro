@@ -1,0 +1,15 @@
+---
+interface Props {
+    target?: boolean;
+    href: string;
+    className?: string;
+}
+const { target, href, className } = Astro.props;
+
+---
+<a class={className} href={href} target={ target ? "_blank" : "_self" }><slot/></a>
+<style>
+    a{font-family: var(--fuente-principal); font-size: 1.6rem; line-height: normal; letter-spacing: 0rem; color: var(--blanco-hueso);} 
+    :global(.btn-primary){width: fit-content; display: flex; align-items: center; column-gap: .5rem; padding: 1rem 2rem; border-radius: 4rem; background-color: var(--naranja); color:white; transition: all .3s ease;}
+    :global(.btn-primary:hover){background-color: var(--naranja-hover);}
+</style>

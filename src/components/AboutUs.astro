@@ -1,0 +1,110 @@
+---
+import Swiper from "../components/Swiper.astro"
+import Button from "../components/Button.astro"
+
+---
+<section id="about_us">
+    <div class="about_content"> 
+        <div class="about_top card_center-animation"> 
+            <h2>Bienvenido a nuestra <span class="color_orange">Barberia</span></h2>
+            <p>Estamos ubicados en la Cra 21 # 11-19 Barrio Olivos, Santa Marta-Magdalena</p>
+        </div>
+        <div class="about_bottom"> 
+            <div class="about_img fade-in">
+                <div class="swiper_container">
+                    <Swiper 
+                        loop={true} 
+                        navigation={false} 
+                        pagination={false} 
+                        breakpoints={{375: { slidesPerView: 1, spaceBetween: 1 }}}
+                        autoplay={{"delay": 3000, "disableOnInteraction": false}}
+                        
+                        >
+                        <div class="swiper-slide">
+                            <img src="/images/img-hero-grid-item-1.webp" alt="Espacio de barberia de The Flame Barbershop" loading="lazy" decoding="async"/>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="/images/img-hero-grid-item-2.webp" alt="Espacio de barberia de The Flame Barbershop" loading="lazy" decoding="async"/>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="/images/img-hero-grid-item-3.webp" alt="Espacio de entretenimiento de The Flame Barbershop" loading="lazy" decoding="async"/>
+                        </div>
+                    </Swiper>
+                </div>
+                
+            </div>
+            <div class="about_info fade-in">
+                <div class="info_top">
+                    <h2>Sobre Nosotros</h2>
+                    <p>En The Flame Barbershop, nos dedicamos a ofrecer un servicio de barbería de alta calidad en un ambiente acogedor y relajante. Nuestro equipo de barberos expertos está comprometido a brindarte un corte de cabello personalizado que se adapte a tu estilo y personalidad.</p>
+                </div>
+                <div class="info_bottom">
+                    <h2>
+                        Nuesta Historia 
+                        <span>
+                            <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17.5 17.5002C20.4167 13.1835 17.5 7.29183 16.0417 5.8335C16.0417 10.2639 13.456 12.7475 11.6667 14.5835C9.87875 16.421 8.75 19.3085 8.75 21.8752C8.75 24.1958 9.67187 26.4214 11.3128 28.0623C12.9538 29.7033 15.1794 30.6252 17.5 30.6252C19.8206 30.6252 22.0462 29.7033 23.6872 28.0623C25.3281 26.4214 26.25 24.1958 26.25 21.8752C26.25 19.641 24.71 16.1293 23.3333 14.5835C20.7288 18.9585 19.2631 18.9585 17.5 17.5002Z" stroke="#EB5E28" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
+                    </h2>
+                    <p>Fundada en el 2021 , hemos estado sirviendo a la comunidad con pasión y dedicación. Nuestro compromiso con la artesanía y la atención al detalle nos ha convertido en un referente en la industria.</p>
+                </div>
+
+            </div>
+            
+        </div>
+        <div class="about_button-contact">
+            <Button className="btn-primary message_entry-animation" href="" target={true}>Contactanos</Button>
+        </div>
+
+
+
+    </div>
+</section>
+
+<style>
+    @media screen and (min-width:0px){
+
+        #about_us{width: 100%; padding: 6rem 0rem; background: var(--gris-oscuro);}
+        #about_us .about_content{width: min(85%, 110.1rem); margin: 0rem auto;}
+        #about_us .about_content .about_top{text-align: center;}
+        #about_us .about_content .about_top h2{font-family: var(--fuente-principal); font-size: 3.2rem; font-weight: 700; line-height: normal; color: var(--blanco-hueso); text-transform: uppercase; text-wrap:balance;}
+        #about_us .about_content .about_top p{padding-top: 1.2rem; font-family: var(--fuente-principal); font-size: 1.6rem; font-weight: 600; line-height: normal; color: var(--blanco-hueso); text-wrap: pretty;}
+        #about_us .about_content .about_bottom{display: flex; flex-wrap: wrap; padding-top: 5rem;}
+        #about_us .about_content .about_bottom > div{width: 100%;}
+        #about_us .about_content .about_bottom .about_img{order: 1; padding-top: 3.8rem;}
+        #about_us .about_content .about_bottom .about_img .swiper_container{width: 100%;}
+        #about_us .about_content .about_bottom .about_img .swiper_container img{width: 100%; height: 25.8rem; object-fit: cover; border-radius: 1.5rem;}
+        #about_us .about_content .about_bottom .about_info{display: flex; flex-direction: column; align-items: center; row-gap: 3.4rem;}
+        #about_us .about_content .about_bottom .about_info h2{display: flex; align-items: center; font-size: 2.5rem; font-weight: 600; line-height: normal; letter-spacing: 0rem; color: var(--blanco-hueso);}
+        #about_us .about_content .about_bottom .about_info p{font-size: 1.6rem; font-weight: 400; line-height: normal; letter-spacing: 0rem; color: var(--blanco-hueso); text-wrap: pretty;}
+        #about_us .about_content .about_bottom .about_info > div{width: 100%;}
+        #about_us .about_content .about_button-contact{padding-top: 6.331rem; display: flex; justify-content: center;}
+
+    }
+
+    @media screen and (min-width:768px){
+        #about_us{padding: 10rem 0rem 9.8rem;}
+        #about_us .about_content{width: min(86%, 110.1rem);}
+        #about_us .about_content .about_top h2{font-size: 3.2rem; font-weight: 900;}
+        #about_us .about_content .about_top p{ font-size: 2rem;}
+        #about_us .about_content .about_bottom{padding-top: 7.8rem; column-gap: 1.3rem;}
+        #about_us .about_content .about_bottom > div{width: 49%;}
+        #about_us .about_content .about_bottom .about_img{order: 0; padding-top: 0rem;}
+        #about_us .about_content .about_bottom .about_img .swiper_container{max-width: 50rem;}
+        #about_us .about_content .about_bottom .about_img .swiper_container img{height: 48.8rem; border-radius: 3.5rem;}
+        #about_us .about_content .about_bottom .about_info > div{max-width: 51rem;}
+        #about_us .about_content .about_bottom .about_info h2{font-size: 2.8rem; font-weight: 900;}
+        #about_us .about_content .about_bottom .about_info p{font-size: 1.6rem;}
+
+    }
+
+    @media screen and (min-width:1025px){
+        #about_us .about_content{width: min(95%, 110.1rem);}
+        #about_us .about_content .about_top h2{font-size: 4.8rem;}
+        #about_us .about_content .about_bottom .about_info h2{font-size: 3rem;}
+        #about_us .about_content .about_bottom .about_info p{font-size: 2rem;}
+        
+    }
+    
+</style>

@@ -1,0 +1,46 @@
+---
+import Facebook from '../assets/icons/facebook.svg';
+import Instagram from '../assets/icons/instagram.svg';
+import Github from '../assets/icons/github.svg';
+
+interface Props {
+ ubicacion: string;   
+}
+
+const {ubicacion} = Astro.props;
+const socialLinks = [
+    {
+        url: 'https://www.facebook.com/ska8dani',
+        name: 'Facebook',
+        logo : Facebook
+    },
+    {
+        url: 'https://www.instagram.com/theflame_barbershop/',
+        name: 'Instagram',
+        logo : Instagram
+    },
+    {
+        url: 'https://github.com/JoseSalas12',
+        name: 'Github',
+        logo : Github
+    }
+]
+---
+
+<div class=`social_container ${ubicacion}`>
+    <ul>
+        {
+            socialLinks.map(links => (
+                <li><a href={links.url}><links.logo/></a></li>
+            ))
+        }
+    </ul>
+</div>
+
+<style>
+    .social_container.header{padding-top: 4rem;}
+    .social_container ul{display: flex; align-items: center; column-gap: 2rem;}
+    .social_container ul a{width: 3rem; height: 3rem; display: flex; justify-content: center; align-items: center; color: var(--blanco-hueso); background: var(--naranja); border-radius: 10rem;}
+    .social_container.footer ul a{color: var(--naranja); background: var(--blanco-hueso); border-radius: 10rem;}
+
+</style>

@@ -1,0 +1,40 @@
+---
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+interface Props {
+  loop?: boolean;
+  navigation?: boolean;
+  pagination?: boolean;
+  breakpoints?: Record<number, any>;
+  thumbs?: string
+  className?: string;
+  autoplay?: Record<string, any>;
+  effect?: string;
+
+}
+const { loop = true, navigation = true, pagination = true, breakpoints = {}, thumbs, className = "", autoplay, effect= undefined } = Astro.props;
+
+---
+
+<swiper-container loop={loop} navigation={navigation} pagination={pagination} breakpoints={JSON.stringify(breakpoints)} thumbs-swiper={thumbs} effect={effect} autoplay={JSON.stringify(autoplay)} class=`custom-swiper ${className}`>
+  <slot /> 
+</swiper-container>
+
+<style>
+  .custom-swiper{width: 100%;}
+  swiper-container::part(container){display: flex; flex-wrap: wrap; column-gap: 2.3rem; row-gap: 2.8rem;}
+  swiper-container::part(button-prev),
+  swiper-container::part(button-next){position: unset; width: 4rem; height: 4rem; display: flex; justify-content: center; align-items: center; border-radius: 10rem; background-color: var(--naranja); order: 0; margin-top: 0rem;}
+  swiper-container::part(svg_icon){width: auto; height: auto;}
+  swiper-container::part(wrapper){order: 1;}
+  swiper-container::part(pagination){position: unset; display: flex; justify-content: center; align-items: center; background-color: transparent; order: 2;}
+
+  swiper-container.gallery_photo::part(container){row-gap: 4.25rem;}
+  swiper-container.gallery_photo::part(bullet){width: 1rem; height: 1rem; border-radius: 100%; margin: 0rem 1rem; transition: all .3s ease; }
+  swiper-container.gallery_photo::part(bullet-active){width: 4rem; height: 1rem; border-radius: 1rem; background-color: var(--naranja);}
+
+</style>
+
+  

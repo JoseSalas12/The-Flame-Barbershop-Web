@@ -1,0 +1,124 @@
+---
+import BurguerMenu from '../assets/icons/burguer-menu.svg';
+import Close from '../assets/icons/close.svg';
+import SocialLinks from '../components/SocialLinks.astro';
+
+const navMenu = [
+    {
+        url: '#about_us',
+        name: 'Sobre Nosotros',
+    },
+    {
+        url: '#services',
+        name: 'Servicios',
+    },
+    {
+        url: '#gallery',
+        name: 'Galeria',
+    },
+    {
+        url: '#contact',
+        name: 'Contacto',
+    },
+    
+];
+
+---
+
+<header>
+    
+    <div class="header_content">
+        <div class="header_content-menu">
+            <div class="header_content-logo">
+                <a href="#">The Flame <span>Barbershop</span></a>
+            </div>
+            <nav class="header_content-navbar">
+                <ul>
+                    {
+                       navMenu.map(link =>(
+                            <li><a href={link.url}>{link.name}</a></li>
+                        ))
+                    }
+                </ul>
+            </nav>
+            <div class="burguer_menu-btn">
+                <button id="burguer_btn-open">
+                    <BurguerMenu/>
+                </button>
+                <button id="burguer_btn-close" class="disable">
+                    <Close/>
+                </button>
+            </div>
+        </div>
+        
+        <div class="burguer_menu-content disable">
+            <nav>
+                <ul>
+                    {
+                        navMenu.map(link =>(
+                            <li><a href={link.url}>{link.name}</a></li>
+                        ))
+                     }
+                </ul>
+            </nav>
+            <SocialLinks ubicacion="header"/>
+        </div>
+    </div>
+    <script is:inline>
+        const btn_open = document.getElementById("burguer_btn-open");
+        const btn_close = document.getElementById("burguer_btn-close");
+        const menu_burguer = document.querySelector(".burguer_menu-content");
+
+    
+        btn_open.addEventListener("click", function(e){
+            e.preventDefault();
+            menu_burguer.classList.toggle("disable");
+            btn_open.classList.toggle("disable");
+            btn_close.classList.toggle("disable");
+        });
+
+        btn_close.addEventListener("click", function(e){
+            e.preventDefault();
+            menu_burguer.classList.toggle("disable");
+            btn_open.classList.toggle("disable");
+            btn_close.classList.toggle("disable");
+        });
+    </script>
+</header>
+
+
+
+<style>
+    @media screen and (min-width:0px){
+        
+        header{width: 100%; position: fixed; top: 0rem; left: 0rem; z-index: 999; background: var(--blanco-hueso);}
+        .header_content{width: min(85%, 132.4rem); display: flex; flex-direction: column; row-gap: 1rem; margin: 0rem auto; padding: 1rem 0rem;}
+        .header_content .header_content-menu{display: flex; justify-content: space-between; align-items: center;}
+        .header_content .header_content-menu .header_content-logo a{font-family: var(--fuente-secundaria); font-size: 2.6rem; line-height: normal; letter-spacing: 0rem; color: var(--negro);}
+        .header_content .header_content-menu .header_content-logo a span{color: var(--naranja);}
+        .header_content .header_content-menu .header_content-navbar{display: none;}
+        .header_content .header_content-menu #burguer_btn-open:not(.disable){display: flex;}
+        .header_content .header_content-menu .burguer_menu-btn path{fill: var(--negro);}
+
+        .header_content .burguer_menu-content{padding: 3rem 0rem 0rem; border-top: .1rem solid var(--negro); opacity: 1; transition: opacity .3s ease; background: #FFFCF2; @starting-style{opacity: 0;} }
+        .header_content .burguer_menu-content ul{display: flex; flex-direction: column; justify-content: center; row-gap: 2rem;}
+        .header_content .burguer_menu-content ul li a{font-family: var(--fuente-principal); font-size: 1.6rem; font-weight: 600; color: var(--negro);}
+        
+    }
+    @media screen and (min-width: 768px){
+        .header_content{width: min(86%, 132.4rem);}
+
+    }
+
+    @media screen and (min-width: 1024px){
+        .header_content{width: min(95%, 132.4rem); padding: 2.1rem 0rem;}
+        .header_content .header_content-menu .header_content-logo a{font-size: 3.6rem;}
+        .header_content .header_content-menu .header_content-navbar{display: block;}
+        .header_content .header_content-menu .header_content-navbar ul{display: flex; justify-content: center; align-items: center; column-gap: 4rem;}
+        .header_content .header_content-menu .header_content-navbar ul li a{font-family: var(--fuente-principal); font-size: 2rem; font-weight: 600; color: var(--negro);}
+        .header_content .header_content-menu .header_content-navbar ul li:last-child a{padding: .9rem 2.55rem; border-radius: 3rem; color: var(--blanco-hueso);  background: var(--naranja); transition: all .3s ease;}
+        .header_content .header_content-menu .header_content-navbar ul li:last-child a:hover{background: var(--naranja-hover);}
+        .header_content .header_content-menu .burguer_menu-btn{display: none;}
+
+    }
+</style>

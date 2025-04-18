@@ -1,0 +1,48 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  price: string;
+}
+
+const { title, description, price } = Astro.props;
+---
+<div class="card_container">
+  <div class="card_top">
+    <div class="icons_card"><slot/></div>
+    <h3>{title}</h3>
+  </div>
+  <div class="card_bottom">
+    <p set:html={description.replace(/\n/g, '<br />')} ></p>
+    <span>{price}</span>
+  </div>
+</div>
+
+<style>
+  @media screen and (min-width:0px){
+    
+    .card_container{width: 100%; display: flex; flex-direction: column; justify-content: space-between; row-gap: 1.5rem; padding: 3rem 2.5rem; background: var(--negro); border-radius: 1.6rem;}
+    .card_container .card_top{display: flex; flex-direction: column; row-gap: .9rem;}
+    .card_container .card_top h3{font-size: 2.5rem; font-weight: 600; line-height: normal; letter-spacing: 0rem; color: var(--blanco-hueso); text-wrap: balance;}
+    .card_container .card_bottom{display: flex; flex-direction: column; row-gap: 1.5rem;}
+    .card_container .card_bottom p{font-size: 1.6rem; font-weight: 600; line-height: normal; letter-spacing: 0rem; color: var(--blanco-hueso);}
+    .card_container .card_bottom span{font-size: 2rem; font-weight: 600; line-height: normal; letter-spacing: 0rem; color: var(--blanco-hueso);}
+  }
+  @media screen and (min-width: 768px){
+    .card_container .card_top h3{font-size: 3.2rem;}
+    .card_container{padding: 3rem 2rem;}
+    .card_container .card_bottom p{font-size: 1.5rem;}
+    
+
+
+  }
+
+  @media screen and (min-width: 1025px){
+    .card_container{padding: 3rem 2.5rem;}
+    .card_container .card_bottom p{font-size: 1.6rem;}
+
+    
+
+
+  }
+</style>
